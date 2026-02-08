@@ -1,4 +1,4 @@
-// Mobile Navigation Toggle
+/*// Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -226,22 +226,172 @@ document.querySelectorAll('section').forEach(section => {
     section.style.transition = 'opacity 0.6s, transform 0.6s';
     observer.observe(section);
 });
+*/
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // =========================================
+    // 1. MOBILE NAVIGATION
+    // =========================================
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
 
- const backToTopButton = document.getElementById("backToTop");
-
-        // Show or hide the button based on scroll position
-        window.onscroll = function() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                backToTopButton.style.display = "block"; // Show button
-            } else {
-                backToTopButton.style.display = "none"; // Hide button
-            }
-        };
-
-        // Scroll to the top smoothly when the button is clicked
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Smooth scrolling effect
-            });
+    // Toggle menu on hamburger click
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
+    }
+
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (hamburger) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+
+    // =========================================
+    // 2. SMOOTH SCROLLING
+    // =========================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
+            if (target) {
+                // Account for fixed header height (80px)
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+
+    // =========================================
+    // 3. CONTACT FORM HANDLING
+    // =========================================
+    const contactForm = document.getElementById('contactForm');
+    const contactMessage = document.getElementById('contactMessage');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const btn = contactForm.querySelector('button');
+            const originalBtnText = btn.innerText;
+
+            // Show loading state
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            // Simulate sending (Replace this setTimeout with actual EmailJS or Backend fetch)
+            setTimeout(() => {
+                contactMessage.innerHTML = `Thank you <b>${name}</b>! Your message has been sent.`;
+                contactMessage.className = 'form-message success';
+                contactMessage.style.color = 'green';
+                
+                contactForm.reset();
+                btn.innerText = originalBtnText;
+                btn.disabled = false;
+
+                // Clear message after 5 seconds
+                setTimeout(() => {
+                    contactMessage.textContent = '';
+                    contactMessage.className = 'form-message';
+                }, 5000);
+            }, 1500);
+        });
+    }
+
+    // =========================================
+    // 4. SCROLL ANIMATIONS (FADE IN)
+    // =========================================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                // Stop observing once it has faded in
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Initialize sections with hidden state
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        observer.observe(section);
+    });
+});
+
+// =========================================
+// 5. GLOBAL FUNCTIONS (Accessible by HTML onclick)
+// =========================================
+
+// Copy Bank Details
+window.copyBankDetails = function() {
+    const bankDetails = `St.Lawrence and Margarita Dosal School
+A/C 0330299445971
+Bank Equity Bank Kenya Limited
+Branch- Kitale
+Swift Code-EQBLKENAXXX`;
+    
+    navigator.clipboard.writeText(bankDetails).then(() => {
+        const message = document.getElementById('copyMessage');
+        const btn = document.querySelector('.copy-btn');
+        
+        // Visual Feedback
+        message.style.display = 'inline';
+        if(btn) btn.innerHTML = '📋 Copied!';
+        
+        setTimeout(() => {
+            message.style.display = 'none';
+            if(btn) btn.innerHTML = '📋 Copy Bank Details';
+        }, 3000);
+    }).catch(err => {
+        alert('Failed to copy bank details. Please copy manually.');
+        console.error('Copy failed:', err);
+    });
+};
+
+// Redirect to Payment (Custom Amount)
+window.redirectToPayment = function() {
+    const amountInput = document.getElementById('customDonationAmount');
+    const amount = amountInput ? amountInput.value : 0;
+    
+    if (!amount || amount < 100) {
+        alert('Please enter a valid amount (minimum KSh 100)');
+        return;
+    }
+    
+    // IMPORTANT: Replace this URL with your actual payment gateway link (PayPal, Pesapal, etc.)
+    // If using a service that accepts query parameters, use the format below:
+    const paymentBaseUrl = "YOUR_PAYMENT_GATEWAY_URL_HERE"; 
+    
+    // Example alert for demonstration
+    alert(`Redirecting to payment gateway for KSh ${amount}... \n(Configure the URL in script.js)`);
+    
+    // Uncomment the line below when you have the real URL
+    // window.open(`${paymentBaseUrl}?amount=${amount}`, '_blank');
+};
+ 
