@@ -394,4 +394,63 @@ window.redirectToPayment = function() {
     // Uncomment the line below when you have the real URL
     // window.open(`${paymentBaseUrl}?amount=${amount}`, '_blank');
 };
- 
+document.querySelectorAll('.gallery-item img').forEach(image => {
+    image.addEventListener('click', () => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightbox.style.display = 'flex'; // Show the lightbox
+        lightboxImg.src = image.src; // Set the image source to the clicked image
+    });
+});
+
+// Close the lightbox when clicking the close button
+document.querySelector('.close').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
+});
+
+// Close the lightbox when clicking outside the image
+document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('lightbox')) {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+});
+
+ document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once it has faded in
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        section.classList.add('fade-in'); // Add fade-in class
+        observer.observe(section);
+    });
+});
+// Scroll-to-top button functionality
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollToTopBtn.style.display = 'block'; // Show button
+    } else {
+        scrollToTopBtn.style.display = 'none'; // Hide button
+    }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Smooth scroll
+    });
+});
