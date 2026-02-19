@@ -1,477 +1,461 @@
 /* =========================================
-   1. RESET & BASE STYLES
-   ========================================= */
+   0. HARD FIXES (STOP MOBILE WHITE PAGE)
+========================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    overflow-x: hidden;
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* prevents sideways overflow that causes blank mobile rendering */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================================
+   1. BASE STYLES
+========================================= */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
 /* =========================================
    2. NAVIGATION
-   ========================================= */
+========================================= */
 .navbar {
-    background: #2c3e50;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: #2c3e50;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo {
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: bold;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  max-width: 60ch;
 }
 
 .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .nav-link:hover {
-    color: #3498db;
+  color: #3498db;
 }
 
 .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0.25rem;
 }
 
 .hamburger span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    margin: 3px 0;
-    transition: 0.3s;
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  margin: 3px 0;
+  transition: 0.3s;
 }
 
-/* Hamburger Animation classes (toggled by JS) */
 .hamburger.active span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
+  transform: rotate(-45deg) translate(-5px, 6px);
 }
 .hamburger.active span:nth-child(2) {
-    opacity: 0;
+  opacity: 0;
 }
 .hamburger.active span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* =========================================
    3. BUTTONS & GLOBAL COMPONENTS
-   ========================================= */
+========================================= */
 .btn {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: all 0.3s;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .btn-primary {
-    background: #3498db;
-    color: #fff;
+  background: #3498db;
+  color: #fff;
 }
 
 .btn-primary:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
 }
 
 .btn-contribute {
-    background: #e74c3c;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+  background: #e74c3c;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
 }
 
 .btn-contribute:hover {
-    background: #c0392b;
-    color: #fff;
+  background: #c0392b;
+  color: #fff;
 }
 
 .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #2c3e50;
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
 }
 
 .section-subtitle {
-    text-align: center;
-    color: #7f8c8d;
-    margin-bottom: 3rem;
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 3rem;
 }
 
 /* =========================================
    4. HERO SECTION
-   ========================================= */
+========================================= */
 .hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                url('IMG-20260208-WA0005.jpg') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    margin-top: 60px; /* Accounts for fixed navbar */
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cover.jpeg') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 6rem 0 2rem; /* safe spacing under fixed navbar */
 }
 
 .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    animation: fadeInDown 1s;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+  animation: fadeInDown 1s;
+  padding: 0 1rem;
 }
 
 .hero-content p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    animation: fadeInUp 1s;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s;
+  padding: 0 1rem;
 }
 
 /* =========================================
    5. ABOUT SECTION
-   ========================================= */
+========================================= */
 .about {
-    padding: 5rem 0;
-    background: #f8f9fa;
+  padding: 5rem 0;
+  background: #f8f9fa;
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 3rem;
-    margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
 }
 
 .about-text h3 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
 }
 
 .about-text p, .about-text ul {
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-    font-size: 1rem;
-}
-
-.about-text ul {
-    padding-left: 2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  font-size: 1rem;
 }
 
 .about-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .stat-box {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
 }
 
 .stat-box:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .stat-box h3 {
-    font-size: 2.5rem;
-    color: #3498db;
-    margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  color: #3498db;
+  margin-bottom: 0.5rem;
 }
 
 /* =========================================
    6. GALLERY SECTION
-   ========================================= */
-/*.gallery {
-    padding: 5rem 0;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-}*/
-
-/* .gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-   height: 250px;
-    cursor: pointer;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    transition: transform 0.5s; 
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1); 
-}
-
-   
-
-
-
-.gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    padding: 2rem;
-    color: #fff;
-    transform: translateY(100%);
-    transition: transform 0.3s;
-}
-
-.gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
-} */
-
-/*
-.gallery-item {
-    position: relative; 
-    overflow: hidden; 
-    border-radius: 10px; 
-}
-
-.gallery-item img {
-    width: 100%; 
-    height: auto; 
-    object-fit: cover; 
-    transition: transform 0.5s; 
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1); 
-}
-
-.gallery-overlay {
-    position: absolute; 
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7); 
-    padding: 1rem;
-    color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s; }
-
-.gallery-item:hover .gallery-overlay {
-    opacity: 1; 
-}*/
+========================================= */
 .gallery {
-    padding: 5rem 0;
+  padding: 5rem 0;
 }
+
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 1.5rem; /* Space between items */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
 }
 
 .gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px; /* Optional: adds rounded corners */
-    width: 100%; /* Ensure full width of the grid item */
-    height: 500px; /* Set a fixed height for uniformity */
+  position: relative;
+  overflow: hidden; /* critical */
+  border-radius: 10px;
+  height: 280px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background: #f0f3f7;
 }
 
 .gallery-item img {
-    width: 100%;
-    height: 100%; /* Fill the height of the container */
-    object-fit: cover; /* Maintain aspect ratio and cover the area */
-    transition: transform 0.5s; /* Smooth transition effect */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* keep layout, crop nicely */
+  transition: transform 0.5s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1); /* Slight zoom effect on hover */
+  transform: scale(1.1);
 }
 
 .gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    padding: 1rem;
-    color: #fff;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s; /* Smooth transition for overlay */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  padding: 1.5rem 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.05rem;
+  z-index: 2;
 }
 
 .gallery-item:hover .gallery-overlay {
-    opacity: 1; /* Show overlay on hover */
+  transform: translateY(0);
 }
 
+/* Lightbox */
 .lightbox {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
+  max-width: 92vw;
+  max-height: 85vh;
+  object-fit: contain; /* show full image */
+  border-radius: 5px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.5);
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  color: white;
+  font-size: 44px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2001;
+  transition: color 0.3s;
+  background: transparent;
+  border: 0;
+}
+
+.close:hover {
+  color: #3498db;
 }
 
 /* =========================================
    7. CONTACT SECTION
-   ========================================= */
+========================================= */
 .contact {
-    padding: 5rem 0;
-    background: #f8f9fa;
+  padding: 5rem 0;
+  background: #f8f9fa;
 }
 
 .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
 }
 
 .contact-info h3 {
-    color: #2c3e50;
-    margin-bottom: 2rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
 }
 
 .info-item {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .info-item strong {
-    color: #3498db;
-    display: block;
-    margin-bottom: 0.5rem;
+  color: #3498db;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .contact-form input,
 .contact-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-family: inherit;
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: inherit;
 }
 
 .contact-form textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 /* =========================================
    8. CONTRIBUTE & PAYMENT SECTION
-   ========================================= */
+========================================= */
 .contribute {
-    padding: 5rem 0;
+  padding: 5rem 0;
 }
 
-.contribute-content {
-    max-width: 800px;
-    margin: 3rem auto;
-}
-
-/* Donation Info Box */
 .donation-info {
-    background: #fff;
-    padding: 2.5rem;
-    border-radius: 10px;
-    margin: 2rem auto 3rem;
-    max-width: 900px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 10px;
+  margin: 2rem auto 3rem;
+  max-width: 900px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.donation-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  font-size: 1.6rem;
+}
+
+.donation-highlight {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #e74c3c;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.donation-subtitle {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.donation-grid {
+  display: grid;
+  gap: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .payment-method-box {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+  overflow: hidden; /* prevents inner overflow */
 }
 
 .payment-method-title {
-    color: #3498db;
-    display: block;
-    margin-bottom: 0.8rem;
-    font-size: 1.15rem;
+  color: #3498db;
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
 }
 
-/* Payment Links */
+.bank-details {
+  line-height: 1.8;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  overflow-wrap: anywhere;
+}
+
 .payment-link {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    transition: all 0.3s;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .payment-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 0.95;
 }
 
 .mpesa-link { background: #3498db; }
@@ -481,641 +465,443 @@ body {
 .copy-btn { background: #3498db; }
 
 .copy-success {
-    color: #27ae60;
-    margin-left: 1rem;
-    display: none;
-    font-weight: bold;
+  color: #27ae60;
+  margin-left: 1rem;
+  display: none;
+  font-weight: bold;
 }
 
 .usa-payment-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
-/* Integrated Payment Form */
+.contribute-content {
+  max-width: 800px;
+  margin: 3rem auto;
+}
+
 .integrated-payment-section {
-    background: #fff;
-    padding: 3rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    max-width: 700px;
-    margin: 0 auto;
+  background: #fff;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.card-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+  font-size: 1.6rem;
 }
 
 .visa-logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .payment-logo-large {
-    height: 60px;
+  height: 60px;
+  width: auto;
 }
 
-.card-input-group {
-    margin-bottom: 1rem;
-}
-
-.card-input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.card-input-group input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.card-input-group input:focus {
-    outline: none;
-    border-color: #1a1f71;
-}
-
-.card-details-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1rem;
-}
-
-#payment-form {
-    margin-top: 2rem;
-}
-
-.donor-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 1rem 0;
-}
-
-.donor-info input {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.btn-donate {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-/* Form Messages */
-.form-message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
-    display: none;
-}
-
-.form-message.success {
-    background: #d4edda;
-    color: #155724;
-    display: block;
-}
-
-.form-message.error {
-    background: #f8d7da;
-    color: #721c24;
-    display: block;
-}
-
-.spinner {
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid #3498db;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-    display: inline-block;
-}
-
-.hidden {
-    display: none;
-}
-
-/* Payment Link Customizer */
-.payment-link-container {
-    padding: 1rem 0;
+.card-description {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  color: #555;
 }
 
 .donation-amount-selector h4 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #2c3e50;
-    font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-size: 1.1rem;
 }
 
 .quick-amounts {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .amount-link {
-    padding: 1rem;
-    background: #fff;
-    border: 2px solid #1a1f71;
-    color: #1a1f71;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s;
+  padding: 1rem;
+  background: #fff;
+  border: 2px solid #1a1f71;
+  color: #1a1f71;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
 }
 
 .amount-link:hover {
-    background: #1a1f71;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(26, 31, 113, 0.3);
+  background: #1a1f71;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(26, 31, 113, 0.3);
+}
+
+.custom-amount-text {
+  text-align: center;
+  margin: 1rem 0;
+  color: #777;
 }
 
 .custom-amount-form {
-    display: flex;
-    gap: 1rem;
-    max-width: 400px;
-    margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 .custom-amount-form input {
-    flex: 1;
-    padding: 0.8rem;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+  flex: 1;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  min-width: 0;
 }
 
 .custom-amount-form button {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .payment-security-info {
-    margin-top: 2rem;
-    padding: 1rem;
-    background: #f0f8ff;
-    border-left: 4px solid #3498db;
-    border-radius: 5px;
-    text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f0f8ff;
+  border-left: 4px solid #3498db;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .payment-security-info p {
-    margin: 0;
-    color: #2c3e50;
-    font-size: 0.95rem;
+  margin: 0.4rem 0;
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+.payment-note {
+  color: #c0392b;
 }
 
 /* =========================================
-   9. BOOKS SECTION
-   ========================================= */
-/* ===== BOOKS SECTION - COMPLETE STYLES ===== */
-
+   9. BOOKS SECTION (MOBILE SAFE)
+========================================= */
 .books {
-    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-    background: #f8fafc;
-    padding: 5rem 1.5rem;
+  padding: 5rem 0;
+  background: #f8fafc;
 }
 
-.books .container {
-    max-width: 1200px;
-    margin: 0 auto;
+.book-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.books .section-title {
-    text-align: center;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #1e2a41;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.5px;
+.book-card {
+  display: flex;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+  min-width: 0; /* critical for flex overflow */
 }
 
-.books .section-subtitle {
-    text-align: center;
-    color: #4a5a72;
-    font-size: 1.25rem;
-    margin-bottom: 3.5rem;
-    border-bottom: 2px solid #e0e7ef;
-    padding-bottom: 1rem;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* book grid – vertical stack, each card is horizontal flex */
-.books .book-showcase {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+.book-cover-image {
+  flex: 0 0 200px;
+  background: #f0f3f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden; /* prevents image overflow */
 }
 
-/* book card – side by side cover + details */
-.books .book-card {
-    display: flex;
-    flex-wrap: wrap;          /* allows stacking on mobile */
-    background: white;
-    border-radius: 28px;
-    box-shadow: 0 20px 35px -8px rgba(0,20,45,0.15);
-    overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.3s;
-    border: 1px solid rgba(0,0,0,0.02);
+.book-cover-image img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
-.books .book-card:hover {
-    transform: scale(1.01);
-    box-shadow: 0 30px 45px -12px rgba(0,35,70,0.25);
+.book-details {
+  flex: 1;
+  padding: 1.8rem;
+  min-width: 0; /* critical */
 }
 
-/* left side: book cover image */
-.books .book-cover-image {
-    flex: 0 0 240px;          /* fixed width on desktop */
-    background: #f0f3f7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    border-right: 1px solid #e9edf2;
+.book-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.3rem;
 }
 
-.books .book-cover-image img {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
-    border-radius: 16px;
-    box-shadow: 0 12px 28px -8px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
-    background: white;
+.book-author-info {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
 }
 
-.books .book-card:hover .book-cover-image img {
-    transform: rotate(1deg) scale(1.02);
+.book-description {
+  color: #34495e;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
 }
 
-/* right side: details */
-.books .book-details {
-    flex: 1;
-    padding: 2rem 2rem 2rem 1.8rem;
-    background: white;
+.book-impact {
+  background: #f8f9fa;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  margin: 1.2rem 0;
+  border-left: 4px solid #3498db;
 }
 
-.books .book-title {
-    font-size: 1.9rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #0b1e32;
-    margin-bottom: 0.3rem;
+.book-impact ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
 }
 
-.books .book-author-info {
-    font-size: 1rem;
-    color: #2c3e50;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    opacity: 0.8;
-    letter-spacing: 0.2px;
+.btn-buy-book {
+  display: inline-block;
+  background: #3498db;
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.3s;
 }
 
-.books .book-description {
-    color: #2d3f55;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-    max-width: 600px;
+.btn-buy-book:hover {
+  background: #2980b9;
 }
 
-.books .book-impact {
-    background: #f2f6fc;
-    padding: 1.2rem 1.5rem;
-    border-radius: 24px;
-    margin: 1.5rem 0 1.8rem;
-    border-left: 5px solid #2c7be0;
+.books-note {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  color: #2c3e50;
 }
 
-.books .book-impact p {
-    font-weight: 600;
-    color: #0b2b4a;
-    margin-bottom: 0.5rem;
-    font-size: 1.05rem;
+.books-note a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.books .book-impact ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 1.8rem;
+.books-note a:hover {
+  text-decoration: underline;
 }
-
-.books .book-impact li {
-    font-size: 1rem;
-    color: #164a7f;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-}
-
-.books .book-impact li::before {
-    content: "✓";
-    color: #1e7e34;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.books .btn-buy-book {
-    display: inline-block;
-    background: #1e3b5c;
-    color: white;
-    font-weight: 600;
-    padding: 0.9rem 2.5rem;
-    border-radius: 40px;
-    text-decoration: none;
-    font-size: 1.1rem;
-    letter-spacing: 0.3px;
-    border: 1px solid #1a2f47;
-    box-shadow: 0 6px 12px rgba(0,55,100,0.2);
-    transition: background 0.2s, transform 0.15s;
-}
-
-.books .btn-buy-book:hover {
-    background: #143049;
-    transform: translateY(-3px);
-    box-shadow: 0 15px 20px -8px #1e3b5c80;
-}
-
-.books .books-note {
-    text-align: center;
-    margin-top: 4rem;
-    font-size: 1.15rem;
-    color: #34495e;
-    background: #ecf3fa;
-    padding: 1.5rem 2rem;
-    border-radius: 60px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.books .books-note a {
-    color: #0f5fa3;
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 2px solid #8bb9e0;
-}
-
-.books .books-note a:hover {
-    color: #083c64;
-    border-bottom-color: currentColor;
-}
-
-/* ===== mobile / small screens ===== */
-@media (max-width: 720px) {
-    .books .book-card {
-        flex-direction: column;
-    }
-
-    .books .book-cover-image {
-        flex: auto;
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #dee5ed;
-        padding: 2rem 1.5rem 1rem;
-    }
-
-    .books .book-cover-image img {
-        max-height: 260px;
-        width: auto;
-        max-width: 200px;
-    }
-
-    .books .book-details {
-        padding: 1.5rem 1.5rem 2rem;
-    }
-
-    .books .book-title {
-        font-size: 1.7rem;
-    }
-
-    .books .section-title {
-        font-size: 2.2rem;
-    }
-
-    .books .book-impact ul {
-        flex-direction: column;
-        gap: 0.3rem;
-    }
-}
-
-/* tiny screens */
-@media (max-width: 420px) {
-    .books .book-cover-image img {
-        max-width: 160px;
-    }
-}
-
-/* overrides for any existing stray styles – fully self contained */
-.books .book-author-info strong {
-    font-weight: 600;
-    color: #1d3557;
-}
-
 
 /* =========================================
    10. FOOTER
-   ========================================= */
+========================================= */
 .footer {
-    background: #2c3e50;
-    color: #fff;
-    padding: 3rem 0 1rem;
+  background: #2c3e50;
+  color: #fff;
+  padding: 3rem 0 1rem;
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-section h4 {
-    margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .footer-section ul {
-    list-style: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-section a {
-    color: #ecf0f1;
-    text-decoration: none;
-    transition: color 0.3s;
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .footer-section a:hover {
-    color: #3498db;
+  color: #3498db;
 }
 
 .footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid #34495e;
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #34495e;
 }
 
 /* =========================================
    11. ANIMATIONS
-   ========================================= */
+========================================= */
 @keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================
-   12. RESPONSIVE MEDIA QUERIES
-   ========================================= */
-@media (max-width: 768px) {
-    /* Navigation */
-    .hamburger {
-        display: flex;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 60px;
-        flex-direction: column;
-        background-color: #2c3e50;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 2rem 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    /* Hero */
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-    
-    /* Layouts: Switch Grids to Single Column */
-    .about-content,
-    .contact-content,
-    .donor-info,
-    .footer-content,
-    .card-details-row,
-    .book-card {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Payment Elements */
-    .usa-payment-buttons {
-        flex-direction: column;
-    }
-    
-    .integrated-payment-section {
-        padding: 1.5rem;
-    }
-
-    .quick-amounts {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .custom-amount-form {
-        flex-direction: column;
-    }
-
-    /* Books */
-    .book-cover {
-        min-height: 250px;
-    }
-    
-    .book-title {
-        font-size: 1.5rem;
-    }
-}
-/* Fade-in effect */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+   12. SCROLL TO TOP BUTTON
+========================================= */
 .scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 10px 15px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .scroll-to-top:hover {
-    background: #2980b9;
-}
-.topic-power {
-    color: #3498db; /* Blue */
+  background: #2980b9;
 }
 
-.topic-silent {
-    color: #e74c3c; /* Red */
+/* =========================================
+   13. RESPONSIVE MEDIA QUERIES
+========================================= */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 64px;
+    flex-direction: column;
+    background-color: #2c3e50;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    gap: 1rem;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .about-content,
+  .contact-content,
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    height: 220px;
+  }
+
+  .integrated-payment-section {
+    padding: 1.5rem;
+  }
+
+  .quick-amounts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .custom-amount-form {
+    flex-direction: column;
+  }
+
+  .books .book-card {
+    flex-direction: column;
+  }
+
+  .books .book-cover-image {
+    flex: auto;
+    width: 100%;
+    padding: 2rem 1rem 1rem;
+  }
+
+  .books .book-cover-image img {
+    max-height: 200px;
+    width: auto;
+  }
+
+
+  .books .book-details {
+    padding: 1.5rem;
+  }
+
+  .close {
+    font-size: 40px;
+    top: 10px;
+    right: 12px;
+  }
 }
 
-.topic-veil {
-    color: #8e44ad; /* Purple */
-}
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
 
-.topic-before {
-    color: #f39c12; /* Orange */
-}
+  .gallery-item {
+    height: 250px;
+  }
 
-.topic-beacon {
-    color: #27ae60; /* Green */
-}
+  .btn-buy-book {
+    width: 100%;
+    text-align: center;
+  }
 
-.topic-divinity {
-    color: #2980b9; /* Dark Blue */
+  .section-title {
+    font-size: 1.8rem;
+  }
+}
+/* Show full gallery images on phones (no cropping) */
+@media (max-width: 768px) {
+  .gallery-item {
+    height: auto;              /* let height grow */
+    aspect-ratio: 4 / 3;       /* keep a nice shape */
+    background: #111;          /* background behind contain images */
+  }
+
+  .gallery-item img {
+    object-fit: contain;       /* show full image */
+    background: #111;
+  }
 }
